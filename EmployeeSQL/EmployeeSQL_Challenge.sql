@@ -51,12 +51,10 @@ SELECT * FROM salaries;
 SELECT * FROM employees;
 
 -- 1. List employee number, last name, first name, gender, and salary
--- Perform an inner join
 
 SELECT employees.emp_no, employees.last_name, employees.first_name, employees.gender, salaries.salary
-FROM salaries
-INNER JOIN employees ON
-employees.emp_no=salaries.emp_no;
+FROM salaries, employees
+WHERE employees.emp_no=salaries.emp_no;
 
 -- 2. List employees who were hired in 1986
 
@@ -92,4 +90,11 @@ WHERE employees.emp_no=dept_emp.emp_no AND dept_emp.dept_no=departments.dept_no 
 
 SELECT employees.emp_no, last_name, first_name, dept_name
 FROM employees, departments, dept_emp
-WHERE employees.emp_no=dept_emp.emp_no AND dept_emp.dept_no=departments.dept_no AND dept_name='Sales' OR dept_name='Development';
+WHERE employees.emp_no=dept_emp.emp_no AND dept_emp.dept_no=departments.dept_no AND dept_name IN ('Sales', 'Development');
+
+-- 8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+
+SELECT last_name, COUNT(last_name) AS "Last name frequencies"
+FROM employees
+GROUP BY last_name
+ORDER BY "Last name frequencies" DESC;
