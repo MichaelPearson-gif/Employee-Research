@@ -1,3 +1,5 @@
+-- Create tables to store the data from the CSV files
+
 CREATE TABLE departments (
 	dept_no character varying(4) NOT NULL,
 	dept_name character varying(20) NOT NULL
@@ -39,3 +41,14 @@ CREATE TABLE titles (
 	from_date date DEFAULT ('now'::text)::date NOT NULL,
 	to_date date DEFAULT ('now'::text)::date NOT NULL
 );
+
+-- Check each table
+SELECT * FROM departments;
+SELECT * FROM dept_emp;
+SELECT * FROM dept_manager;
+SELECT * FROM titles;
+SELECT * FROM salaries;
+SELECT * FROM employees;
+
+-- 1. List employee number, last name, first name, gender, and salary
+
